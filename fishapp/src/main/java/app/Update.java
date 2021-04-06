@@ -20,7 +20,7 @@ import data.Fish;
 public class Update extends HttpServlet {
 	private Dao dao;
 	public void init() {
-		dao=new Dao("jdbc:mysql://localhost:3306/fishdatabase", "pena", "kukkuu");
+		dao=new Dao("jdbc:mysql://localhost:3306/fishdatabase", "antero", "kukkuu");
 	}
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
