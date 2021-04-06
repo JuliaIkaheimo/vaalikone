@@ -1,0 +1,2 @@
+# vaalikone
+javalla vaalikone
