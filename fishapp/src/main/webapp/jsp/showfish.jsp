@@ -18,12 +18,12 @@
 </head>
 <body>
 <h2>Fish application</h2>
-<ol>
+<!--  <ol>
 <c:forEach var="fish" items="${requestScope.fishlist}" >
 <li>${fish.id}: ${fish.breed} <a href='/delete?id=${fish.id}'>delete</a> <a href='/readtoupdate?id=${fish.id}'>update</a>
 </c:forEach>
 </ol>
-
+-->
 <%
 ArrayList<Fish> fishList=(ArrayList<Fish>)request.getAttribute("fishlist");
 
