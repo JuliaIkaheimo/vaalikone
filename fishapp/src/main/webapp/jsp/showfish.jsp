@@ -12,8 +12,8 @@
 <meta charset="UTF-8">
 <title>Fish application</title>
 
-<link rel="stylesheet" type="text/css" href="mycssfilesomewhere.css">
-<script src="myscriptfile.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="mycssfilesomewhere.css"> -->
+<!--  <script src="myscriptfile.js"></script>  -->
 
 </head>
 <body>
