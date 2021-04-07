@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import data.Fish;
+import data.Ehdokkaat;
 
 import java.sql.Connection;
 
@@ -42,15 +42,17 @@ public class Dao {
 			return false;
 		}
 	}
-	public ArrayList<Fish> readAllFish() {
-		ArrayList<Fish> list=new ArrayList<>();
+	public ArrayList<Ehdokkaat> readAllEhdokkaat() {
+		ArrayList<Ehdokkaat> list=new ArrayList<>();
 		try {
 			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from fish");
+			ResultSet RS=stmt.executeQuery("select * from ehdokkaat");
 			while (RS.next()){
-				Fish f=new Fish();
-				f.setId(RS.getInt("id"));
-				f.setBreed(RS.getString("breed"));
+				Ehdokkaat f=new Ehdokkaat();
+				f.setId(RS.getInt("ehdokas_id"));
+				f.setEtunimi(RS.getString("etunimi"));
+				f.setSukunimi(RS.getString("sukunimi"));
+				f.setPuolue(RS.getString("puolue"));
 				list.add(f);
 			}
 			return list;
@@ -59,43 +61,47 @@ public class Dao {
 			return null;
 		}
 	}
-	public ArrayList<Fish> updateFish(Fish f) {
+	public ArrayList<Ehdokkaat> updateEhdokkaat(Ehdokkaat f) {
 		try {
-			String sql="update fish set breed=? where id=?";
+			String sql="update ehdokkaat set etunimi=?, sukunimi=?, puolue=? where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, f.getBreed());
+			pstmt.setString(1, f.getEtunimi());
+			pstmt.setString(1, f.getSukunimi());
+			pstmt.setString(1, f.getPuolue());
 			pstmt.setInt(2, f.getId());
 			pstmt.executeUpdate();
-			return readAllFish();
+			return readAllEhdokkaat();
 		}
 		catch(SQLException e) {
 			return null;
 		}
 	}
-	public ArrayList<Fish> deleteFish(String id) {
+	public ArrayList<Ehdokkaat> deleteEhdokkaat(String ehdokas_id) {
 		try {
-			String sql="delete from fish where id=?";
+			String sql="delete from ehdokkaat where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, ehdokas_id);
 			pstmt.executeUpdate();
-			return readAllFish();
+			return readAllEhdokkaat();
 		}
 		catch(SQLException e) {
 			return null;
 		}
 	}
 
-	public Fish readFish(String id) {
-		Fish f=null;
+	public Ehdokkaat readEhdokkaat(String ehdokas_id) {
+		Ehdokkaat f=null;
 		try {
-			String sql="select * from fish where id=?";
+			String sql="select * from ehdokkaat where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, ehdokas_id);
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
-				f=new Fish();
-				f.setId(RS.getInt("id"));
-				f.setBreed(RS.getString("breed"));
+				f=new Ehdokkaat();
+				f.setId(RS.getInt("ehdokas_id"));
+				f.setEtunimi(RS.getString("etunimi"));
+				f.setEtunimi(RS.getString("sukunimi"));
+				f.setEtunimi(RS.getString("puolue"));
 			}
 			return f;
 		}
