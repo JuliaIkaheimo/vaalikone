@@ -46,7 +46,7 @@ public class Dao {
 		ArrayList<Ehdokkaat> list=new ArrayList<>();
 		try {
 			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from ehdokkaat");
+			ResultSet RS=stmt.executeQuery("select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat");
 			while (RS.next()){
 				Ehdokkaat f=new Ehdokkaat();
 				f.setId(RS.getInt("ehdokas_id"));
@@ -66,9 +66,9 @@ public class Dao {
 			String sql="update ehdokkaat set etunimi=?, sukunimi=?, puolue=? where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, f.getEtunimi());
-			pstmt.setString(1, f.getSukunimi());
-			pstmt.setString(1, f.getPuolue());
-			pstmt.setInt(2, f.getId());
+			pstmt.setString(2, f.getSukunimi());
+			pstmt.setString(3, f.getPuolue());
+			pstmt.setInt(4, f.getId());
 			pstmt.executeUpdate();
 			return readAllEhdokkaat();
 		}
@@ -92,7 +92,7 @@ public class Dao {
 	public Ehdokkaat readEhdokkaat(String ehdokas_id) {
 		Ehdokkaat f=null;
 		try {
-			String sql="select * from ehdokkaat where ehdokas_id=?";
+			String sql="select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, ehdokas_id);
 			ResultSet RS=pstmt.executeQuery();
@@ -100,8 +100,8 @@ public class Dao {
 				f=new Ehdokkaat();
 				f.setId(RS.getInt("ehdokas_id"));
 				f.setEtunimi(RS.getString("etunimi"));
-				f.setEtunimi(RS.getString("sukunimi"));
-				f.setEtunimi(RS.getString("puolue"));
+				f.setSukunimi(RS.getString("sukunimi"));
+				f.setPuolue(RS.getString("puolue"));
 			}
 			return f;
 		}
