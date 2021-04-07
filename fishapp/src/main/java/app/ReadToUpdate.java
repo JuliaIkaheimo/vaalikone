@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Fish;
+import data.Ehdokkaat;
 
 /**
  * Servlet implementation class ReadToUpdate
@@ -20,7 +20,7 @@ public class ReadToUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao;
 	public void init() {
-		dao=new Dao("jdbc:mysql://localhost:3306/fishdatabase", "antero", "kukkuu");
+		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
 	}
        
     /**
@@ -37,13 +37,13 @@ public class ReadToUpdate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
-		Fish f=null;
+		Ehdokkaat f=null;
 		if (dao.getConnection()) {
-			f=dao.readFish(id);
+			f=dao.readEhdokkaat(id);
 		}
-		request.setAttribute("fish", f);
+		request.setAttribute("ehdokkaat", f);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showfishtoedit.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
 		rd.forward(request, response);
 	}
 }
