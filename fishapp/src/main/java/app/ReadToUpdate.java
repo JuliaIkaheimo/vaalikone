@@ -36,10 +36,10 @@ public class ReadToUpdate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String henkilo_id=request.getParameter("henkilo_id");
+		String ehdokas_id=request.getParameter("ehdokas_id");
 		Ehdokkaat f=null;
 		if (dao.getConnection()) {
-			f=dao.readEhdokkaat(henkilo_id);
+			f=dao.readEhdokkaat(ehdokas_id);
 		}
 		request.setAttribute("Ehdokkaat", f);
 		
