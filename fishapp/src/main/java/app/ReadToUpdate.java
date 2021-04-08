@@ -37,13 +37,13 @@ public class ReadToUpdate extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String ehdokas_id=request.getParameter("ehdokas_id");
-		Ehdokkaat f=null;
+		Ehdokkaat e=null;
 		if (dao.getConnection()) {
-			f=dao.readEhdokkaat(ehdokas_id);
+			e=dao.readEhdokkaat(ehdokas_id);
 		}
-		request.setAttribute("Ehdokkaat", f);
+		request.setAttribute("ehdokkaat", e);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokastoedit.jsp");
 		rd.forward(request, response);
 	}
 }

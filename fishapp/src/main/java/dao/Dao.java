@@ -37,8 +37,8 @@ public class Dao {
 	        }
 	        return true;
 		}
-		catch (SQLException e) {
-			System.out.println(e.getMessage());
+		catch (SQLException s) {
+			System.out.println(s.getMessage());
 			return false;
 		}
 	}
@@ -48,31 +48,31 @@ public class Dao {
 			Statement stmt=conn.createStatement();
 			ResultSet RS=stmt.executeQuery("select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat");
 			while (RS.next()){
-				Ehdokkaat f=new Ehdokkaat();
-				f.setId(RS.getInt("ehdokas_id"));
-				f.setEtunimi(RS.getString("etunimi"));
-				f.setSukunimi(RS.getString("sukunimi"));
-				f.setPuolue(RS.getString("puolue"));
-				list.add(f);
+				Ehdokkaat e=new Ehdokkaat();
+				e.setId(RS.getInt("ehdokas_id"));
+				e.setEtunimi(RS.getString("etunimi"));
+				e.setSukunimi(RS.getString("sukunimi"));
+				e.setPuolue(RS.getString("puolue"));
+				list.add(e);
 			}
 			return list;
 		}
-		catch(SQLException e) {
+		catch(SQLException s) {
 			return null;
 		}
 	}
-	public ArrayList<Ehdokkaat> updateEhdokkaat(Ehdokkaat f) {
+	public ArrayList<Ehdokkaat> updateEhdokkaat(Ehdokkaat e) {
 		try {
 			String sql="update ehdokkaat set etunimi=?, sukunimi=?, puolue=? where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, f.getEtunimi());
-			pstmt.setString(2, f.getSukunimi());
-			pstmt.setString(3, f.getPuolue());
-			pstmt.setInt(4, f.getId());
+			pstmt.setString(1, e.getEtunimi());
+			pstmt.setString(2, e.getSukunimi());
+			pstmt.setString(3, e.getPuolue());
+			pstmt.setInt(4, e.getId());
 			pstmt.executeUpdate();
 			return readAllEhdokkaat();
 		}
-		catch(SQLException e) {
+		catch(SQLException s) {
 			return null;
 		}
 	}
@@ -84,28 +84,28 @@ public class Dao {
 			pstmt.executeUpdate();
 			return readAllEhdokkaat();
 		}
-		catch(SQLException e) {
+		catch(SQLException s) {
 			return null;
 		}
 	}
 
 	public Ehdokkaat readEhdokkaat(String ehdokas_id) {
-		Ehdokkaat f=null;
+		Ehdokkaat e=null;
 		try {
 			String sql="select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, ehdokas_id);
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
-				f=new Ehdokkaat();
-				f.setId(RS.getInt("ehdokas_id"));
-				f.setEtunimi(RS.getString("etunimi"));
-				f.setSukunimi(RS.getString("sukunimi"));
-				f.setPuolue(RS.getString("puolue"));
+				e=new Ehdokkaat();
+				e.setId(RS.getInt("ehdokas_id"));
+				e.setEtunimi(RS.getString("etunimi"));
+				e.setSukunimi(RS.getString("sukunimi"));
+				e.setPuolue(RS.getString("puolue"));
 			}
-			return f;
+			return e;
 		}
-		catch(SQLException e) {
+		catch(SQLException s) {
 			return null;
 		}
 	}

@@ -12,11 +12,11 @@
 	ArrayList<Ehdokkaat> ehdokkaatList=(ArrayList<Ehdokkaat>)request.getAttribute("ehdokkaatlist");
 
 for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
-	Ehdokkaat f=ehdokkaatList.get(i);
+	Ehdokkaat e=ehdokkaatList.get(i);
 %>
 <br>
 <%
-	out.println(f.getId()+": "+f.getEtunimi()+" "+f.getSukunimi()+" "+f.getPuolue()+"<a href='/delete?id="+f.getId()+"'>delete</a> <a href='/readtoupdate?id="+f.getId()+"'>update</a>");
+	out.println(e.getId()+": "+e.getEtunimi()+" "+e.getSukunimi()+" "+e.getPuolue()+"<a href='/delete?id="+e.getId()+"'>delete</a> <a href='/readtoupdate?ehdokas_id="+e.getId()+"'>update</a>");
 }
 %>
 <%@ include file="../html/footer.html" %>

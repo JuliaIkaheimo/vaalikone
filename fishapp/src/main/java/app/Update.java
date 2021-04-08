@@ -34,11 +34,11 @@ public class Update extends HttpServlet {
 		String sukunimi=request.getParameter("sukunimi");
 		String puolue=request.getParameter("puolue");
 		
-		Ehdokkaat f=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue);
+		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue);
 		
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.updateEhdokkaat(f);
+			list=dao.updateEhdokkaat(e);
 		}
 		
 		request.setAttribute("ehdokkaatlist", list);
