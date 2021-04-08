@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Ehdokkaat;
+import data.Kysymykset;
 
 /**
  * Servlet implementation class ShowKysymykset
  */
-@WebServlet("/showehdokkaat")
-public class ShowEhdokkaat extends HttpServlet {
+@WebServlet("/showkysymykset")
+public class ShowKysymykset extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  
  <%@ page import="java.util.ArrayList" %>   
- <%@ page import="data.Ehdokkaat" %>   
+ <%@ page import="data.Kysymykset" %>   
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
@@ -11,14 +11,14 @@
 <div class="row">
 <div class="col-9">
 <%
-	ArrayList<Kysymykset> kysymyksetList=(ArrayList<Ehdokkaat>)request.getAttribute("kysymyksetlist");
+	ArrayList<Kysymykset> kysymyksetList=(ArrayList<Kysymykset>)request.getAttribute("kysymyksetlist");
 
 for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
 	Kysymykset k=kysymyksetList.get(i);
 %>
 <br>
 <%
-	out.println(e.getId()+": "+k.getKysymys());
+	out.println(k.getId()+": "+k.getKysymys());
 }
 %>
 </div>

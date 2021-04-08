@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import data.Ehdokkaat;
+import data.Kysymykset;
 
 import java.sql.Connection;
 
@@ -117,7 +118,7 @@ public class Dao {
 			while (RS.next()){
 				Kysymykset k=new Kysymykset();
 				k.setId(RS.getInt("kysymys_id"));
-				k.setEtunimi(RS.getString("kysymys"));
+				k.setKysymys(RS.getString("kysymys"));
 				list.add(k);
 			}
 			return list;

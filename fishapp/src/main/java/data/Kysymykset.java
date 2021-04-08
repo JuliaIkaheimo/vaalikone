@@ -1,51 +1,36 @@
 package data;
 
 public class Kysymykset {
-	private int ehdokas_id;
-	private String etunimi;
-	private String sukunimi;
-	private String puolue;
-	public Kysymykset(String ehdokas_id, String etunimi, String sukunimi, String puolue) {
+	private int kysymys_id;
+	private String kysymys;
+	public Kysymykset(String kysymys_id, String kysymys) {
 		// TODO Auto-generated constructor stub
-		setId(ehdokas_id);
-		this.etunimi=etunimi;
-		this.sukunimi=sukunimi;
-		this.puolue=puolue;
+		setId(kysymys_id);
+		this.kysymys=kysymys;
 		
 	}
 	public Kysymykset() {
 		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
-		return ehdokas_id;
+		return kysymys_id;
 	}
-	public void setId(int ehdokas_id) {
-		this.ehdokas_id = ehdokas_id;
+	public void setId(int kysymys_id) {
+		this.kysymys_id = kysymys_id;
 	}
-	public void setId(String ehdokas_id) {
+	public void setId(String kysymys_id) {
 		try {
-			this.ehdokas_id = Integer.parseInt(ehdokas_id);
+			this.kysymys_id = Integer.parseInt(kysymys_id);
 		}
 		catch(NumberFormatException | NullPointerException e) {
 			//Do nothing - the value of id won't be changed
 		}
 	}
-	public String getEtunimi() {
-		return etunimi;
+	public String getKysymys() {
+		return kysymys;
 	}
-	public void setEtunimi(String etunimi) {
-		this.etunimi = etunimi;
+	public void setKysymys(String kysymys) {
+		this.kysymys = kysymys;
 	}
-	public String getSukunimi() {
-		return sukunimi;
-	}
-	public void setSukunimi(String sukunimi) {
-		this.sukunimi = sukunimi;
-	}
-	public String getPuolue() {
-		return puolue;
-	}
-	public void setPuolue(String puolue) {
-		this.puolue= puolue;
-	}
+
 }
