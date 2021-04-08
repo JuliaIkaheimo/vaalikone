@@ -109,4 +109,21 @@ public class Dao {
 			return null;
 		}
 	}
+	public ArrayList<Kysymykset> readAllKysymykset() {
+		ArrayList<Kysymykset> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from kysymykset");
+			while (RS.next()){
+				Kysymykset k=new Kysymykset();
+				k.setId(RS.getInt("kysymys_id"));
+				k.setEtunimi(RS.getString("kysymys"));
+				list.add(k);
+			}
+			return list;
+		}
+		catch(SQLException s) {
+			return null;
+		}
+	}
 }
