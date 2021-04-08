@@ -11,14 +11,14 @@
 <div class="row">
 <div class="col-9">
 <%
-	ArrayList<Ehdokkaat> ehdokkaatList=(ArrayList<Ehdokkaat>)request.getAttribute("ehdokkaatlist");
+	ArrayList<Kysymykset> kysymyksetList=(ArrayList<Ehdokkaat>)request.getAttribute("kysymyksetlist");
 
-for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
-	Ehdokkaat e=ehdokkaatList.get(i);
+for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
+	Kysymykset k=kysymyksetList.get(i);
 %>
 <br>
 <%
-	out.println(e.getId()+": "+e.getEtunimi()+" "+e.getSukunimi()+" - "+e.getPuolue()+"<a href='/delete?id="+e.getId()+"'> delete </a> <a href='/readtoupdate?ehdokas_id="+e.getId()+"'> update </a>");
+	out.println(e.getId()+": "+k.getKysymys());
 }
 %>
 </div>

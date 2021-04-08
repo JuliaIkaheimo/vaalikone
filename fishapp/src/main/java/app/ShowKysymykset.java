@@ -14,7 +14,7 @@ import dao.Dao;
 import data.Ehdokkaat;
 
 /**
- * Servlet implementation class ShowFish
+ * Servlet implementation class ShowKysymykset
  */
 @WebServlet("/showehdokkaat")
 public class ShowEhdokkaat extends HttpServlet {
@@ -29,7 +29,7 @@ public class ShowEhdokkaat extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowEhdokkaat() {
+    public ShowKysymykset() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,16 +38,16 @@ public class ShowEhdokkaat extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Ehdokkaat> list=null;
+		ArrayList<Kysymykset> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllEhdokkaat();
+			list=dao.readAllKysymykset();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("ehdokkaatlist", list);
+		request.setAttribute("kysymyksetlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showkysymykset.jsp");
 		rd.forward(request, response);
 	}
 	

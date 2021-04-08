@@ -4,14 +4,11 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Vaalikone :)</title>
-</head>
-<body>
-<h2>Muokkaa ehdokkaan tietoja</h2>
+<%@ include file="../html/header.html" %>
+<div class="container">
+<div class="row">
+<div class="col-9">
+
 <form action='update' method='post'>
 Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.Ehdokkaat.ehdokas_id}' readonly><br> 
 Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.Ehdokkaat.etunimi}'><br>
@@ -19,5 +16,7 @@ Ehdokkaan sukunimi: <input type='text' name='sukunimi' value='${requestScope.Ehd
 Ehdokkaan nimi: <input type='text' name='puolue' value='${requestScope.Ehdokkaat.puolue}'><br>
 <input type='submit' name='ok' value='Send'> 
 </form>
-</body>
-</html>
+</div>
+</div>
+</div>
+<%@ include file="../html/footer.html" %>
