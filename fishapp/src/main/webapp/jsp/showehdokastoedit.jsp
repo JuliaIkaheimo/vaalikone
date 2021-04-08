@@ -10,10 +10,10 @@
 <div class="col-9">
 
 <form action='update' method='post'>
-Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.Ehdokkaat.ehdokas_id}' readonly><br> 
-Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.Ehdokkaat.etunimi}'><br>
-Ehdokkaan sukunimi: <input type='text' name='sukunimi' value='${requestScope.Ehdokkaat.sukunimi}'><br>
-Ehdokkaan nimi: <input type='text' name='puolue' value='${requestScope.Ehdokkaat.puolue}'><br>
+Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.ehdokkaat.ehdokas_id}' readonly><br> 
+Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.ehdokkaat.etunimi}'><br>
+Ehdokkaan sukunimi: <input type='text' name='sukunimi' value='${requestScope.ehdokkaat.sukunimi}'><br>
+Ehdokkaan nimi: <input type='text' name='puolue' value='${requestScope.ehdokkaat.puolue}'><br>
 <input type='submit' name='ok' value='Send'> 
 </form>
 </div>
