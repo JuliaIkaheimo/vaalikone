@@ -11,25 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Fish;
+import data.Ehdokkaat;
 
 /**
  * Servlet implementation class ShowFish
  */
-@WebServlet("/showfish")
-public class ShowFish extends HttpServlet {
+@WebServlet("/showehdokkaat")
+public class ShowEhdokkaat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
 	@Override
 	public void init() {
-		dao=new Dao("jdbc:mysql://localhost:3306/fishdatabase", "pena", "kukkuu");
+		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
 	}
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowFish() {
+    public ShowEhdokkaat() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,16 +38,16 @@ public class ShowFish extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Fish> list=null;
+		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllFish();
+			list=dao.readAllEhdokkaat();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("fishlist", list);
+		request.setAttribute("ehdokkaatlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showfish.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
 		rd.forward(request, response);
 	}
 }
