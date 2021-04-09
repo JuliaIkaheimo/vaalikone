@@ -2,6 +2,9 @@ package app;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+
  
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +26,19 @@ public class LoginServlet extends HttpServlet {
         System.out.println("password: " + password);
  
         // do some processing here...
-         
+        if(Validate.checkUser(username, password))
+        {
+            RequestDispatcher rs = request.getRequestDispatcher("Welcome");
+            rs.forward(request, response);
+        }
+        else
+        {
+           System.out.println("Username or Password incorrect");
+           RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+           rs.include(request, response);
+        }
+        
+ 
         // get response writer
         PrintWriter writer = response.getWriter();
          

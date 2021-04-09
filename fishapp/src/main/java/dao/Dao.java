@@ -127,4 +127,18 @@ public class Dao {
 			return null;
 		}
 	}
+	
+
+	public ArrayList<Ehdokkaat> lisaaEhdokkaat(String ehdokas_id) {
+		try {
+			String sql="insert into ehdokkaat(etunimi, sukunimi, , sukunimi, sahkoposti) values(?, ?, ?, ?, ?)";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, ehdokas_id);
+			pstmt.executeUpdate();
+			return readAllEhdokkaat();
+		}
+		catch(SQLException s) {
+			return null;
+		}
+	}
 }
