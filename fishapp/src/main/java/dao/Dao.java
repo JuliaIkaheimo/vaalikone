@@ -117,7 +117,7 @@ public class Dao {
 			ResultSet RS=stmt.executeQuery("select * from kysymykset");
 			while (RS.next()){
 				Kysymykset k=new Kysymykset();
-				k.setEhdokas_id(RS.getInt("kysymys_id"));
+				k.setId(RS.getInt("kysymys_id"));
 				k.setKysymys(RS.getString("kysymys"));
 				list.add(k);
 			}
@@ -128,12 +128,15 @@ public class Dao {
 		}
 	}
 	
-
-	public ArrayList<Ehdokkaat> lisaaEhdokkaat(String ehdokas_id) {
+	public ArrayList<Ehdokkaat> lisaaEhdokkaat(Ehdokkaat e) {
 		try {
-			String sql="insert into ehdokkaat(etunimi, sukunimi, puolue) values(?, ?, ?)";
+			String sql="insert into ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue) values(?, ?, ?, ?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, ehdokas_id);
+			pstmt.setInt(1, e.getEhdokas_id());
+			pstmt.setString(2, e.getEtunimi());
+			pstmt.setString(3, e.getSukunimi());
+			pstmt.setString(4, e.getPuolue());
+			
 			pstmt.executeUpdate();
 			return readAllEhdokkaat();
 		}

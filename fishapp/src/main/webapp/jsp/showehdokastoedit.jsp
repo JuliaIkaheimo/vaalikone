@@ -13,7 +13,7 @@
 Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.ehdokkaat.ehdokas_id}' readonly><br> 
 Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.ehdokkaat.etunimi}'><br>
 Ehdokkaan sukunimi: <input type='text' name='sukunimi' value='${requestScope.ehdokkaat.sukunimi}'><br>
-Ehdokkaan nimi: <input type='text' name='puolue' value='${requestScope.ehdokkaat.puolue}'><br>
+Ehdokkaan puolue: <input type='text' name='puolue' value='${requestScope.ehdokkaat.puolue}'><br>
 <input type='submit' name='ok' value='Send'> 
 </form>
 </div>
