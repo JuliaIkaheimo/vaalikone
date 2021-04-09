@@ -19,11 +19,11 @@ for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
 	%>
 	<br>
 	<form action='update' method='post'>
-	<input type="radio" id="1" name="vastaus${i}" value="1"> <label for="1">Täysin eri mieltä</label>
-	<input type="radio" id="2" name="vastaus${i}" value="2"> <label for="2">Eri mieltä</label>
-	<input type="radio" id="3" name="vastaus${i}" value="3"> <label for="3">En osaa sanoa</label>
-	<input type="radio" id="4" name="vastaus${i}" value="4"> <label for="4">Samaa mieltä</label>
-	<input type="radio" id="5" name="vastaus${i}" value="5"> <label for="5">Täysin samaa mieltä</label>
+	<input type="radio" id="1" name="vastaus<%out.print(i+1);%>" value="1"> <label for="1">Täysin eri mieltä</label>
+	<input type="radio" id="2" name="vastaus<%out.print(i+1);%>" value="2"> <label for="2">Eri mieltä</label>
+	<input type="radio" id="3" name="vastaus<%out.print(i+1);%>" value="3"> <label for="3">En osaa sanoa</label>
+	<input type="radio" id="4" name="vastaus<%out.print(i+1);%>" value="4"> <label for="4">Samaa mieltä</label>
+	<input type="radio" id="5" name="vastaus<%out.print(i+1);%>" value="5"> <label for="5">Täysin samaa mieltä</label>
 	</form>
 	<br><br>
 	<%

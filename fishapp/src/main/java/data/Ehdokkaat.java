@@ -7,7 +7,7 @@ public class Ehdokkaat {
 	private String puolue;
 	public Ehdokkaat(String ehdokas_id, String etunimi, String sukunimi, String puolue) {
 		// TODO Auto-generated constructor stub
-		setId(ehdokas_id);
+		setEhdokas_id(ehdokas_id);
 		this.etunimi=etunimi;
 		this.sukunimi=sukunimi;
 		this.puolue=puolue;
@@ -16,13 +16,13 @@ public class Ehdokkaat {
 	public Ehdokkaat() {
 		// TODO Auto-generated constructor stub
 	}
-	public int getId() {
+	public int getEhdokas_id() {
 		return ehdokas_id;
 	}
-	public void setId(int ehdokas_id) {
+	public void setEhdokas_id(int ehdokas_id) {
 		this.ehdokas_id = ehdokas_id;
 	}
-	public void setId(String ehdokas_id) {
+	public void setEhdokas_id(String ehdokas_id) {
 		try {
 			this.ehdokas_id = Integer.parseInt(ehdokas_id);
 		}
