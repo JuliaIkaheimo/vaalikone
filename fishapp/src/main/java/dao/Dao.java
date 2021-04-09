@@ -50,7 +50,7 @@ public class Dao {
 			ResultSet RS=stmt.executeQuery("select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat");
 			while (RS.next()){
 				Ehdokkaat e=new Ehdokkaat();
-				e.setId(RS.getInt("ehdokas_id"));
+				e.setEhdokas_id(RS.getInt("ehdokas_id"));
 				e.setEtunimi(RS.getString("etunimi"));
 				e.setSukunimi(RS.getString("sukunimi"));
 				e.setPuolue(RS.getString("puolue"));
@@ -69,7 +69,7 @@ public class Dao {
 			pstmt.setString(1, e.getEtunimi());
 			pstmt.setString(2, e.getSukunimi());
 			pstmt.setString(3, e.getPuolue());
-			pstmt.setInt(4, e.getId());
+			pstmt.setInt(4, e.getEhdokas_id());
 			pstmt.executeUpdate();
 			return readAllEhdokkaat();
 		}
@@ -99,7 +99,7 @@ public class Dao {
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
 				e=new Ehdokkaat();
-				e.setId(RS.getInt("ehdokas_id"));
+				e.setEhdokas_id(RS.getInt("ehdokas_id"));
 				e.setEtunimi(RS.getString("etunimi"));
 				e.setSukunimi(RS.getString("sukunimi"));
 				e.setPuolue(RS.getString("puolue"));
@@ -117,7 +117,7 @@ public class Dao {
 			ResultSet RS=stmt.executeQuery("select * from kysymykset");
 			while (RS.next()){
 				Kysymykset k=new Kysymykset();
-				k.setId(RS.getInt("kysymys_id"));
+				k.setEhdokas_id(RS.getInt("kysymys_id"));
 				k.setKysymys(RS.getString("kysymys"));
 				list.add(k);
 			}

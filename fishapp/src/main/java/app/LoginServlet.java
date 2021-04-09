@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet("/login")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
  
     protected void doPost(HttpServletRequest request,
@@ -28,13 +28,13 @@ public class LoginServlet extends HttpServlet {
         // do some processing here...
         if(Validate.checkUser(username, password))
         {
-            RequestDispatcher rs = request.getRequestDispatcher("Welcome");
+            RequestDispatcher rs = request.getRequestDispatcher("Welcome.java");
             rs.forward(request, response);
         }
         else
         {
            System.out.println("Username or Password incorrect");
-           RequestDispatcher rs = request.getRequestDispatcher("login.jsp");
+           RequestDispatcher rs = request.getRequestDispatcher("/jsp/login.jsp");
            rs.include(request, response);
         }
         

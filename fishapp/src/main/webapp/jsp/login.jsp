@@ -9,10 +9,10 @@
 <div class="row">
 <div class="col-9">
 
-<form name="loginForm" method="post" action="loginServlet">
+<form name="loginForm" method="post" action="LoginServlet">
     Käyttäjänimi: <input type="text" name="username"/> <br/>
     Salasana: <input type="password" name="password"/> <br/>
-    <input type="submit" value="Login" />
+    <input type="submit" value="Kirjaudu" />
 </form>
 
 </div>
