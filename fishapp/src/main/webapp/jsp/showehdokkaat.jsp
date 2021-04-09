@@ -28,7 +28,10 @@ for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
 }
 %>
 </ol>
+
 </div>
+<a href='/lisaaehdokkaat'>Lisää ehdokas</a>
 </div>
 </div>
 <%@ include file="../html/footer.html" %>
+

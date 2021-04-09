@@ -9,11 +9,10 @@
 <div class="row">
 <div class="col-9">
 
-<form action='update' method='post'>
-Ehdokas id: <input type='text' name='ehdokas_id' value='' readonly><br> 
+<form action='lisaa' method='post'> 
 Ehdokkaan etunimi: <input type='text' name='etunimi' value=''><br>
 Ehdokkaan sukunimi: <input type='text' name='sukunimi' value=''><br>
-Ehdokkaan nimi: <input type='text' name='puolue' value=''><br>
+Ehdokkaan puolue: <input type='text' name='puolue' value=''><br>
 <input type='submit' name='ok' value='Send'> 
 </form>
 </div>
