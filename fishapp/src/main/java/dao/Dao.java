@@ -54,6 +54,7 @@ public class Dao {
 				e.setEtunimi(RS.getString("etunimi"));
 				e.setSukunimi(RS.getString("sukunimi"));
 				e.setPuolue(RS.getString("puolue"));
+				
 				list.add(e);
 			}
 			return list;
