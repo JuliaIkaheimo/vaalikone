@@ -33,8 +33,13 @@ public class Update extends HttpServlet {
 		String etunimi=request.getParameter("etunimi");
 		String sukunimi=request.getParameter("sukunimi");
 		String puolue=request.getParameter("puolue");
+		String kotipaikkakunta=request.getParameter("kotipaikkakunta");
+		String ika=request.getParameter("ika");
+		String miksi_eduskuntaan=request.getParameter("miksi_eduskuntaan");
+		String mita_asioita_haluat_edistaa=request.getParameter("mita_asioita_haluat_edistaa");
+		String ammatti=request.getParameter("ammatti");
 		
-		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue);
+		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
 		
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
