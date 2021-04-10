@@ -37,11 +37,17 @@ public class ReadAndCompare extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String ehdokas_id=request.getParameter("ehdokas_id");
-		Ehdokkaat e=null;
+		Ehdokkaat list=null;
 		if (dao.getConnection()) {
-			e=dao.readEhdokkaat(ehdokas_id);
+			
+			list=dao.readAllVastaukset();
 		}
-		request.setAttribute("vastaukset", e);
+		request.setAttribute("uservastauksetlist", list);
+		
+		for (int i=1; i<21;i++){
+		String vastaus=request.getParameter("vastaus");
+		}
+		kayttajanVastaukset kv=new kayttajanVastaukset(ehdokas_id, etunimi, sukunimi, puolue);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showcompare.jsp");
 		rd.forward(request, response);

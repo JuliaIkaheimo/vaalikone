@@ -9,8 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import data.Ehdokkaat;
-import data.Kysymykset;
+import data.*;
 
 import java.sql.Connection;
 
@@ -63,7 +62,7 @@ public class Dao {
 			return null;
 		}
 	}
-	public ArrayList<Ehdokkaat> updateEhdokkaat(Ehdokkaat e) {
+	public ArrayList<Ehdokkaat> updateEhdokas(Ehdokkaat e) {
 		try {
 			String sql="update ehdokkaat set etunimi=?, sukunimi=?, puolue=? where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -91,7 +90,7 @@ public class Dao {
 		}
 	}
 
-	public Ehdokkaat readEhdokkaat(String ehdokas_id) {
+	public Ehdokkaat readEhdokas(String ehdokas_id) {
 		Ehdokkaat e=null;
 		try {
 			String sql="select ehdokas_id, etunimi, sukunimi, puolue from ehdokkaat where ehdokas_id=?";
@@ -109,18 +108,20 @@ public class Dao {
 		}
 		catch(SQLException s) {
 			return null;
-		}
+			}
 	}
-	public ArrayList<Kysymykset> readAllKysymykset() {
-		ArrayList<Kysymykset> list=new ArrayList<>();
+	public ArrayList<Vastaukset> readAllVastaukset() {
+		ArrayList<Vastaukset> list=new ArrayList<>();
 		try {
 			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from kysymykset");
+			ResultSet RS=stmt.executeQuery("select * from vastaukset");
 			while (RS.next()){
-				Kysymykset k=new Kysymykset();
-				k.setId(RS.getInt("kysymys_id"));
-				k.setKysymys(RS.getString("kysymys"));
-				list.add(k);
+				Vastaukset v=new Vastaukset();
+				v.setEhdokas_id(RS.getInt("ehdokas_id"));
+				v.setKysymys_id(RS.getInt("kysymys_id"));
+				v.setVastaus(RS.getInt("vastaus"));
+				v.setKommentti(RS.getString("kommentti"));
+				list.add(v);
 			}
 			return list;
 		}
@@ -128,17 +129,17 @@ public class Dao {
 			return null;
 		}
 	}
-	
-	public ArrayList<Kysymykset> readAllVastaukset() {
+		
+	public ArrayList<Kysymykset> readAllKysymykset() {
 		ArrayList<Kysymykset> list=new ArrayList<>();
 		try {
 			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from vastaukset");
+			ResultSet RS=stmt.executeQuery("select * from kysymykset");
 			while (RS.next()){
-				Vastaukset v=new Vastaukset();
-				v.setId(RS.getInt("kysymys_id"));
-				v.setKysymys(RS.getString("kysymys"));
-				list.add(v);
+				Kysymykset k=new Kysymykset();
+				k.setKysymys_id(RS.getInt("kysymys_id"));
+				k.setKysymys(RS.getString("kysymys"));
+				list.add(k);
 			}
 			return list;
 		}

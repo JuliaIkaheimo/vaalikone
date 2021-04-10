@@ -10,7 +10,7 @@
 <div class="col-9">
 
 <form action='lisaa' method='post'> 
-Ehdokas id: <input type='text' name='ehdokas_id' value=''><br> 
+
 Ehdokkaan etunimi: <input type='text' name='etunimi' value=''><br>
 Ehdokkaan sukunimi: <input type='text' name='sukunimi' value=''><br>
 Ehdokkaan puolue: <input type='text' name='puolue' value=''><br>

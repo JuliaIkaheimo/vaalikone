@@ -39,7 +39,7 @@ public class ReadToUpdate extends HttpServlet {
 		String ehdokas_id=request.getParameter("ehdokas_id");
 		Ehdokkaat e=null;
 		if (dao.getConnection()) {
-			e=dao.readEhdokkaat(ehdokas_id);
+			e=dao.readEhdokas(ehdokas_id);
 		}
 		request.setAttribute("ehdokkaat", e);
 		

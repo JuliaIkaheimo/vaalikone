@@ -38,7 +38,7 @@ public class Update extends HttpServlet {
 		
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.updateEhdokkaat(e);
+			list=dao.updateEhdokas(e);
 		}
 		
 		request.setAttribute("ehdokkaatlist", list);
