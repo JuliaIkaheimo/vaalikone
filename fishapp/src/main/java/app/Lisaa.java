@@ -38,7 +38,7 @@ public class Lisaa extends HttpServlet {
 		
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.lisaaEhdokkaat(e);
+			list=dao.lisaaEhdokas(e);
 		}
 		
 		request.setAttribute("ehdokkaatlist", list);

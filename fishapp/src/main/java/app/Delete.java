@@ -28,7 +28,7 @@ public class Delete extends HttpServlet {
 		String ehdokas_id=request.getParameter("ehdokas_id");
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.deleteEhdokkaat(ehdokas_id);
+			list=dao.deleteEhdokas(ehdokas_id);
 		}
 		request.setAttribute("ehdokkaatlist", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");

@@ -78,7 +78,7 @@ public class Dao {
 			return null;
 		}
 	}
-	public ArrayList<Ehdokkaat> deleteEhdokkaat(String ehdokas_id) {
+	public ArrayList<Ehdokkaat> deleteEhdokas(String ehdokas_id) {
 		try {
 			String sql="delete from ehdokkaat where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -129,7 +129,25 @@ public class Dao {
 		}
 	}
 	
-	public ArrayList<Ehdokkaat> lisaaEhdokkaat(Ehdokkaat e) {
+	public ArrayList<Kysymykset> readAllVastaukset() {
+		ArrayList<Kysymykset> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from vastaukset");
+			while (RS.next()){
+				Vastaukset v=new Vastaukset();
+				v.setId(RS.getInt("kysymys_id"));
+				v.setKysymys(RS.getString("kysymys"));
+				list.add(v);
+			}
+			return list;
+		}
+		catch(SQLException s) {
+			return null;
+		}
+	}
+	
+	public ArrayList<Ehdokkaat> lisaaEhdokas(Ehdokkaat e) {
 		try {
 			String sql="insert into ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue) values(?, ?, ?, ?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
