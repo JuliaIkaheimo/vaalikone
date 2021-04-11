@@ -12,7 +12,7 @@
 <div class="col-9">
 <ol>
 <c:forEach var="Ehdokkaat" items="${requestScope.ehdokkaatlist}" >
-<li>${Ehdokkaat.getEhdokas_id()} ${Ehdokkaat.getEtunimi()} ${Ehdokkaat.getSukunimi()} - ${Ehdokkaat.getPuolue()}<a href='/delete?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> delete </a> <a href='/readtoupdate?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> update </a>
+<li>${Ehdokkaat.getEhdokas_id()} ${Ehdokkaat.getEtunimi()} ${Ehdokkaat.getSukunimi()} - ${Ehdokkaat.getPuolue()} - ${Ehdokkaat.getKotipaikkakunta()}<a href='/deleteehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> delete </a> <a href='/readtoupdateehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> update </a><a href='/showvastauksettoedit?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> kysymyksiin vastaus </a>
 </c:forEach>
 </ol>
 <ol>
@@ -24,13 +24,13 @@ for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
 %>
 <br>
 <%
-	out.println("<li> "+e.getEtunimi()+" "+e.getSukunimi()+" - "+e.getPuolue()+"<a href='/delete?ehdokas_id="+e.getEhdokas_id()+"'> delete </a> <a href='/readtoupdate?ehdokas_id="+e.getEhdokas_id()+"'> update </a>");
+	out.println("<li> "+e.getEtunimi()+" "+e.getSukunimi()+" - "+e.getPuolue()+" - "+e.getKotipaikkakunta()+"<a href='/deleteehdokas?ehdokas_id="+e.getEhdokas_id()+"'> delete </a> <a href='/readtoupdateehdokas?ehdokas_id="+e.getEhdokas_id()+"'> update </a>");
 }
 %>
 </ol>
 
 </div>
-<a href='/lisaaehdokas'>Lisää ehdokas</a>
+<a href='/readehdokastoupdate'>Lisää ehdokas</a>
 </div>
 </div>
 <%@ include file="../html/footer.html" %>

@@ -14,10 +14,10 @@ import dao.Dao;
 import data.Ehdokkaat;
 
 @WebServlet(
-    name = "Update",
-    urlPatterns = {"/update"}
+    name = "UpdateEhdokas",
+    urlPatterns = {"/updateehdokas"}
 )
-public class Update extends HttpServlet {
+public class UpdateEhdokas extends HttpServlet {
 	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
@@ -47,7 +47,7 @@ public class Update extends HttpServlet {
 		}
 		
 		request.setAttribute("ehdokkaatlist", list);
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
 }

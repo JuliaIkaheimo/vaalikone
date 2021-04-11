@@ -9,7 +9,7 @@
 <div class="row">
 <div class="col-9">
 
-<form action='update' method='post'>
+<form action='updateehdokas' method='post'>
 Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.ehdokkaat.ehdokas_id}' readonly><br> 
 Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.ehdokkaat.etunimi}'><br>
 Ehdokkaan sukunimi: <input type='text' name='sukunimi' value='${requestScope.ehdokkaat.sukunimi}'><br>

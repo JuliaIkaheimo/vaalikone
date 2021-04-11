@@ -14,10 +14,10 @@ import dao.Dao;
 import data.Ehdokkaat;
 
 @WebServlet(
-    name = "Delete",
-    urlPatterns = {"/delete"}
+    name = "DeleteEhdokas",
+    urlPatterns = {"/deleteehdokas"}
 )
-public class Delete extends HttpServlet {
+public class DeleteEhdokas extends HttpServlet {
 	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
@@ -31,7 +31,7 @@ public class Delete extends HttpServlet {
 			list=dao.deleteEhdokas(ehdokas_id);
 		}
 		request.setAttribute("ehdokkaatlist", list);
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
 }

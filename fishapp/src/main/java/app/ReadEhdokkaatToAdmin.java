@@ -16,8 +16,8 @@ import data.Ehdokkaat;
 /**
  * Servlet implementation class ShowFish
  */
-@WebServlet("/showehdokkaat")
-public class ShowEhdokkaat extends HttpServlet {
+@WebServlet("/readehdokkaattoadmin")
+public class ReadEhdokkaatToAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class ShowEhdokkaat extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowEhdokkaat() {
+    public ReadEhdokkaatToAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,7 +47,7 @@ public class ShowEhdokkaat extends HttpServlet {
 		}
 		request.setAttribute("ehdokkaatlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaat.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
 	

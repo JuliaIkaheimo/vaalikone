@@ -14,10 +14,10 @@ import dao.Dao;
 import data.Kysymykset;
 
 /**
- * Servlet implementation class ShowFish
+ * Servlet implementation class ShowKysymykset
  */
-@WebServlet("/lisaavastaus")
-public class LisaaVastaus extends HttpServlet {
+@WebServlet("/showtulokset")
+public class ShowTulokset extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class LisaaVastaus extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LisaaVastaus() {
+    public ShowTulokset() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,17 +37,24 @@ public class LisaaVastaus extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+tected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Kysymykset> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymykset();
+		String ehdokas_id=request.getParameter("ehdokas_id");
+		String etunimi=request.getParameter("etunimi");
+		String sukunimi=request.getParameter("sukunimi");
+		
+		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+			l
+		ist=dao.readAllKysymykset();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("kysymyksetlist", list);
+		request.setAttribute("tuloksetlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaavastaus.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showtulokset.jsp");
 		rd.forward(request, response);
 	}
 	

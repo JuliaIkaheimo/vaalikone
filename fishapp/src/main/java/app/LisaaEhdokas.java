@@ -13,42 +13,41 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Dao;
 import data.Ehdokkaat;
 
-/**
- * Servlet implementation class ShowFish
- */
-@WebServlet("/lisaaehdokas")
+@WebServlet(
+    name = "LisaaEhdokas",
+    urlPatterns = {"/lisaaehdokas"}
+)
 public class LisaaEhdokas extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Dao dao=null;
-	
-	@Override
+	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
 	}
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LisaaEhdokas() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	     throws IOException {
+		response.sendRedirect("index.html");
+	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	     throws IOException, ServletException {
+		String ehdokas_id=request.getParameter("ehdokas_id");
+		String etunimi=request.getParameter("etunimi");
+		String sukunimi=request.getParameter("sukunimi");
+		String puolue=request.getParameter("puolue");
+		String kotipaikkakunta=request.getParameter("kotipaikkakunta");
+		String ika=request.getParameter("ika");
+		String miksi_eduskuntaan=request.getParameter("miksi_eduskuntaan");
+		String mita_asioita_haluat_edistaa=request.getParameter("mita_asioita_haluat_edistaa");
+		String ammatti=request.getParameter("ammatti");
+		
+		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+		
 		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllEhdokkaat();
+			list=dao.lisaaEhdokas(e);
 		}
-		else {
-			System.out.println("No connection to database");
-		}
-		request.setAttribute("ehdokkaatlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaaehdokas.jsp");
+		request.setAttribute("ehdokkaatlist", list);
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
-	
 }

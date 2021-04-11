@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Kysymykset;
+import data.Ehdokkaat;
 
 /**
  * Servlet implementation class ShowFish
  */
-@WebServlet("/lisaavastaus")
-public class LisaaVastaus extends HttpServlet {
+@WebServlet("/readehdokastoupdate")
+public class ReadEhdokasToUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class LisaaVastaus extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LisaaVastaus() {
+    public ReadEhdokasToUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,16 +38,16 @@ public class LisaaVastaus extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kysymykset> list=null;
+		ArrayList<Ehdokkaat> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymykset();
+			list=dao.readAllEhdokkaat();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("kysymyksetlist", list);
+		request.setAttribute("ehdokkaatlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaavastaus.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaaehdokas.jsp");
 		rd.forward(request, response);
 	}
 	
