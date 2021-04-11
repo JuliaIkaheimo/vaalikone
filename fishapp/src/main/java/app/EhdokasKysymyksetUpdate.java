@@ -53,8 +53,8 @@ public class EhdokasKysymyksetUpdate extends HttpServlet {
 			System.out.println("No connection to database");
 		}
 		request.setAttribute("kysymyksetlist", list);
-		request.setAttribute("ehdokas", e);
-		request.setAttribute("vastaus", v);
+		request.setAttribute("ehdokkaat", e);
+		request.setAttribute("vastaukset", v);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showvastauksettoedit.jsp");
 		rd.forward(request, response);

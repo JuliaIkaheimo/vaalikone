@@ -10,15 +10,17 @@
 <div class="container">
 <div class="row">
 <div class="col-9">
-
-Ehdokas: ${requestScope.ehdokkaat.etunimi} ${requestScope.ehdokkaat.sukunimi}
 <%
+Ehdokkaat e = (Ehdokkaat) request.getAttribute("ehdokkaat");
+out.println(e.getEtunimi()+" "+e.getSukunimi()+"                 ");
+
 ArrayList<Kysymykset> kysymyksetList=(ArrayList<Kysymykset>) request.getAttribute("kysymyksetlist");
-Vastaukset v = (Vastaukset) request.getAttribute("vastaus");
+Vastaukset v = (Vastaukset) request.getAttribute("vastaukset");
 for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
 	Kysymykset k=kysymyksetList.get(i);
-	out.println(k.getKysymys_id()+": "+k.getKysymys()+" vastasit:" + v.getVastaus());
+	out.println(k.getKysymys_id()+": "+k.getKysymys()+" vastasit:"+ v.getVastaus());
 	%>
+	${requestScope.vastaukset.vastaus}
 	<br>
 	<form action='update' method='post'>
 	<input type="radio" id="1" name="vastaus<%out.print(i+1);%>" value="1"> <label for="1">Täysin eri mieltä</label>

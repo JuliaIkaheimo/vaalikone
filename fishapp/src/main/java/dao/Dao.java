@@ -128,13 +128,12 @@ public class Dao {
 	public Vastaukset readVastaus(String ehdokas_id) {
 		Vastaukset v=null;
 		try {
-			String sql="select * from ehdokkaat where ehdokas_id=?";
+			String sql="select * from vastaukset where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, ehdokas_id);
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
 				v=new Vastaukset();
-				v.setEhdokas_id(RS.getInt("ehdokas_id"));
 				v.setKysymys_id(RS.getInt("kysymys_id"));
 				v.setVastaus(RS.getInt("vastaus"));
 			}
