@@ -40,21 +40,22 @@ public class EhdokasKysymyksetUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kysymykset> list=null;
+
 		String ehdokas_id=request.getParameter("ehdokas_id");
 		Ehdokkaat e=null;
-		Vastaukset v=null;
+		ArrayList<Kysymykset> klist=null;
+		ArrayList<Vastaukset> vlist=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymykset();
+			klist=dao.readAllKysymykset();
+			vlist=dao.readEhdokkaanVastaukset(ehdokas_id);
 			e=dao.readEhdokas(ehdokas_id);
-			v=dao.readVastaus(ehdokas_id);
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("kysymyksetlist", list);
+		request.setAttribute("kysymyksetList", klist);
+		request.setAttribute("vastauksetList", vlist);
 		request.setAttribute("ehdokkaat", e);
-		request.setAttribute("vastaukset", v);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showvastauksettoedit.jsp");
 		rd.forward(request, response);

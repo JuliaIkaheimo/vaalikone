@@ -60,6 +60,7 @@ CREATE TABLE VASTAUKSET (
 );
 
 
+
 -- insert values into the table ehdokkaat
 INSERT INTO EHDOKKAAT VALUES (1, "Ahvenjärvi", "Joel", "Suomen Kristillisdemokraatit (KD)", "Uurainen", 86, "Mieluiten tekisin aivan muuta, mutta valtakunta on korjattava. Tulen toimeen noin kahdeksalla kielellä ja olen perehtynyt monen alan asioihin. Kaupunkilais- ja maalaisjärkeä.", "Haluan edistaa Suomea, jossa kenenkään ei tarvitse kärsiä puutetta tai voimattomuuden tunnetta omiin asioihinsa vaikuttamisesta.", "Kansanedustaja");
 INSERT INTO EHDOKKAAT VALUES (2, "Aintila", "Henrik Jeremias", "Suomen ruotsalainen kansanpuolue", "Helsinki", 47, "Olen puheeni pitävä, monipuolisesti asioita harkitseva, perusteellisesti asiat selvittävä, erilaisissa yhteisäissä, yritysmaailmassa ja julkishallinnossa toiminut kolmen lapsen äiti.", "- Inhimillinen toimeentulo ja aito tasa-arvo kaikille statuksesta riippumatta  - Aito itsemääräämisoikeus ja puolueettomuus  - Kansan hyvinvointi yritysvoittojen edelle  - Avoimuus käsiteltävistä asioista!", "Lähihoitaja");

@@ -15,6 +15,8 @@
     <input type="submit" value="Kirjaudu" />
 </form>
 
+<p> Väärä käyttäjätunnus tai salasana</p>
+
 </div>
 </div>
 </div>
