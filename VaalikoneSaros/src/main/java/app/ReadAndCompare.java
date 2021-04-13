@@ -1,6 +1,7 @@
 package app;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Ehdokkaat;
+import data.Kysymykset;
+import data.Vastaukset;
 
 /**
  * Servlet implementation class ReadToUpdate
@@ -37,11 +39,21 @@ public class ReadAndCompare extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String ehdokas_id=request.getParameter("ehdokas_id");
-		Ehdokkaat e=null;
+		ArrayList<Vastaukset> list=null;
 		if (dao.getConnection()) {
-			e=dao.readEhdokkaat(ehdokas_id);
+			
+			list=dao.readAllVastaukset();
 		}
-		request.setAttribute("vastaukset", e);
+		
+		request.setAttribute("uservastauksetlist", list);
+		
+		Vastaukset kv=new Vastaukset();
+		for (int i=1; i<20;i++){
+		String vastaus=request.getParameter("vastaus"+i);
+		list.add(kv);
+		}
+		
+		
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showcompare.jsp");
 		rd.forward(request, response);

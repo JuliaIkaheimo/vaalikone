@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Kysymykset;
+import data.*;
 
 /**
- * Servlet implementation class ShowKysymykset
+ * Servlet implementation class ShowFish
  */
-@WebServlet("/showkysymykset")
-public class ShowKysymykset extends HttpServlet {
+@WebServlet("/lisaavastaus")
+public class LisaaVastaus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class ShowKysymykset extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowKysymykset() {
+    public LisaaVastaus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,16 +38,19 @@ public class ShowKysymykset extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kysymykset> list=null;
+		ArrayList<Kysymykset> kysymyslist=null;
+		ArrayList<Vastaukset> vastauksetlist=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymykset();
+			kysymyslist=dao.readAllKysymykset();
+			vastauksetlist=dao.readAllVastaukset();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("kysymyksetlist", list);
+		request.setAttribute("kysymyksetlist", kysymyslist);
+		request.setAttribute("vastauksetlist", vastauksetlist);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/vastaavaalikoneeseen.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaavastaus.jsp");
 		rd.forward(request, response);
 	}
 	
