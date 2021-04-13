@@ -42,6 +42,8 @@ public class Dao {
 			return false;
 		}
 	}
+	
+	
 	public ArrayList<Ehdokkaat> readAllEhdokkaat() {
 		ArrayList<Ehdokkaat> list=new ArrayList<>();
 		try {
@@ -125,8 +127,8 @@ public class Dao {
 			return null;
 			}
 	}
-	public ArrayList<Vastaukset> readVastau(String ehdokas_id) {
-		ArrayList<Vastaukset> list=new ArrayList<>();
+	public ArrayList<Vastaukset> readEhdokkaanVastaukset(String ehdokas_id) {
+		ArrayList<Vastaukset> vlist=new ArrayList<>();
 		try {
 			String sql="select * from vastaukset where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -136,9 +138,9 @@ public class Dao {
 				Vastaukset v=new Vastaukset();
 				v.setKysymys_id(RS.getInt("kysymys_id"));
 				v.setVastaus(RS.getInt("vastaus"));
-				list.add(v);
+				vlist.add(v);
 			}
-			return v;
+			return vlist;
 		}
 		catch(SQLException s) {
 			return null;
@@ -163,7 +165,21 @@ public class Dao {
 			return null;
 		}
 	}
-		
+	
+	public ArrayList<Vastaukset> updateVastaukset(Vastaukset v) {
+		try {
+			String sql="update vastaukset set vastaus=? where ehdokas_id=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, v.getVastaus());
+			pstmt.setInt(2, v.getEhdokas_id());
+			pstmt.executeUpdate();
+			return readEhdokkaanVastaukset();
+		}
+		catch(SQLException s) {
+			return null;
+		}
+	}
+	
 	public ArrayList<Kysymykset> readAllKysymykset() {
 		ArrayList<Kysymykset> list=new ArrayList<>();
 		try {
@@ -181,7 +197,6 @@ public class Dao {
 			return null;
 		}
 	}
-	
 	
 	public ArrayList<Ehdokkaat> lisaaEhdokas(Ehdokkaat e) {
 		try {
@@ -202,5 +217,5 @@ public class Dao {
 		catch(SQLException s) {
 			return null;
 		}
-	}
+	}	
 }

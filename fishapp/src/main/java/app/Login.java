@@ -11,11 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet(
+	    name = "login",
+	    urlPatterns = {"/login"}
+	)
+public class Login extends HttpServlet {
  
-    protected void doPost(HttpServletRequest request,
+    protected void service(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
          
         // read form fields
@@ -28,13 +32,16 @@ public class LoginServlet extends HttpServlet {
         // do some processing here...
         if(Validate.checkUser(username, password))
         {
-            RequestDispatcher rs = request.getRequestDispatcher("Welcome.java");
+            RequestDispatcher rs = request.getRequestDispatcher("/jsp/admin.jsp");
             rs.forward(request, response);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("Admin",username);
+            
         }
         else
         {
            System.out.println("Username or Password incorrect");
-           RequestDispatcher rs = request.getRequestDispatcher("/jsp/login.jsp");
+           RequestDispatcher rs = request.getRequestDispatcher("/jsp/loginfail.jsp");
            rs.include(request, response);
         }
         

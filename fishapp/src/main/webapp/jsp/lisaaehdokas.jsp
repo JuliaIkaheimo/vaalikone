@@ -11,14 +11,14 @@
 
 <form action='lisaaehdokas' method='post'> 
 
-Ehdokkaan etunimi: <input type='text' name='etunimi' value=''><br>
-Ehdokkaan sukunimi: <input type='text' name='sukunimi' value=''><br>
-Ehdokkaan puolue: <input type='text' name='puolue' value=''><br>
-Kotipaikkakunta: <input type='text' name='kotipaikkakunta' value=''><br>
-Ikä: <input type='text' name='ika' value=''><br>
-Ammatti: <input type='text' name='ammatti' value=''><br>
-Miksi haluan eduskuntaan?: <input type='text' name='miksi_eduskuntaan' value=''><br>
-Mitä asioita haluan edistää?: <input type='text' name='mita_asioita_haluat_edistaa' value=''><br>
+Ehdokkaan etunimi: <input type='text' name='etunimi' size="35" value=''><br>
+Ehdokkaan sukunimi: <input type='text' name='sukunimi' size="35" value=''><br>
+Ehdokkaan puolue: <input type='text' name='puolue' size="35" value=''><br>
+Kotipaikkakunta: <input type='text' name='kotipaikkakunta' size="35" value=''><br>
+Ikä: <input type='text' name='ika' size="35" value=''><br>
+Ammatti: <input type='text' name='ammatti' size="35" value=''><br>
+Miksi haluan eduskuntaan?: <input type='text' name='miksi_eduskuntaan' size="35" value=''><br>
+Mitä asioita haluan edistää?: <input type='text' name='mita_asioita_haluat_edistaa' size="35" value=''><br>
 <input type='submit' name='ok' value='Send'> 
 </form>
 </div>

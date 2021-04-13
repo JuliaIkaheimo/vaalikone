@@ -25,6 +25,7 @@ use vaalikone;
 DROP TABLE if exists EHDOKKAAT;
 DROP TABLE if exists KYSYMYKSET;
 DROP TABLE if exists VASTAUKSET;
+DROP TABLE if exists LOGIN;
 
 ALTER DATABASE vaalikone CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 SET NAMES 'utf8' COLLATE 'utf8_general_ci';
@@ -58,6 +59,16 @@ CREATE TABLE VASTAUKSET (
    KOMMENTTI VARCHAR(50),
    PRIMARY KEY (EHDOKAS_ID, KYSYMYS_ID)
 );
+
+-- create a table login
+CREATE TABLE LOGIN (
+   USERNAME VARCHAR(45) NOT NULL,
+   PASSWORD VARCHAR(45) NOT NULL,
+   PRIMARY KEY (USERNAME)
+);
+
+-- insert values into table login
+INSERT INTO LOGIN (username, password) VALUES ("admin", "qwerty");
 
 
 -- insert values into the table ehdokkaat
@@ -462,26 +473,26 @@ INSERT INTO VASTAUKSET VALUES  (19, 13, 2, "ehdokkaan 19 vastaus kysymykseen 13"
 INSERT INTO VASTAUKSET VALUES  (19, 14, 3, "ehdokkaan 19 vastaus kysymykseen 14");
 INSERT INTO VASTAUKSET VALUES  (19, 15, 4, "ehdokkaan 19 vastaus kysymykseen 15");
 INSERT INTO VASTAUKSET VALUES  (19, 16, 5, "ehdokkaan 19 vastaus kysymykseen 16");
-INSERT INTO VASTAUKSET VALUES  (19, 17, 5, "ehdokkaan 19 vastaus kysymykseen 17");
-INSERT INTO VASTAUKSET VALUES  (19, 18, 3, "ehdokkaan 19 vastaus kysymykseen 18");
-INSERT INTO VASTAUKSET VALUES  (19, 19, 4, "ehdokkaan 19 vastaus kysymykseen 19");
-INSERT INTO VASTAUKSET VALUES  (20, 1, 3, "ehdokkaan 20 vastaus kysymykseen 1");
-INSERT INTO VASTAUKSET VALUES  (20, 2, 3, "ehdokkaan 20 vastaus kysymykseen 2");
-INSERT INTO VASTAUKSET VALUES  (20, 3, 3, "ehdokkaan 20 vastaus kysymykseen 3");
-INSERT INTO VASTAUKSET VALUES  (20, 4, 4, "ehdokkaan 20 vastaus kysymykseen 4");
-INSERT INTO VASTAUKSET VALUES  (20, 5, 4, "ehdokkaan 20 vastaus kysymykseen 5");
-INSERT INTO VASTAUKSET VALUES  (20, 6, 4, "ehdokkaan 20 vastaus kysymykseen 6");
+INSERT INTO VASTAUKSET VALUES  (19, 17, 2, "ehdokkaan 19 vastaus kysymykseen 17");
+INSERT INTO VASTAUKSET VALUES  (19, 18, 4, "ehdokkaan 19 vastaus kysymykseen 18");
+INSERT INTO VASTAUKSET VALUES  (19, 19, 2, "ehdokkaan 19 vastaus kysymykseen 19");
+INSERT INTO VASTAUKSET VALUES  (20, 1, 1, "ehdokkaan 20 vastaus kysymykseen 1");
+INSERT INTO VASTAUKSET VALUES  (20, 2, 1, "ehdokkaan 20 vastaus kysymykseen 2");
+INSERT INTO VASTAUKSET VALUES  (20, 3, 1, "ehdokkaan 20 vastaus kysymykseen 3");
+INSERT INTO VASTAUKSET VALUES  (20, 4, 1, "ehdokkaan 20 vastaus kysymykseen 4");
+INSERT INTO VASTAUKSET VALUES  (20, 5, 1, "ehdokkaan 20 vastaus kysymykseen 5");
+INSERT INTO VASTAUKSET VALUES  (20, 6, 1, "ehdokkaan 20 vastaus kysymykseen 6");
 INSERT INTO VASTAUKSET VALUES  (20, 7, 1, "ehdokkaan 20 vastaus kysymykseen 7");
-INSERT INTO VASTAUKSET VALUES  (20, 8, 2, "ehdokkaan 20 vastaus kysymykseen 8");
+INSERT INTO VASTAUKSET VALUES  (20, 8, 1, "ehdokkaan 20 vastaus kysymykseen 8");
 INSERT INTO VASTAUKSET VALUES  (20, 9, 1, "ehdokkaan 20 vastaus kysymykseen 9");
-INSERT INTO VASTAUKSET VALUES  (20, 10, 2, "ehdokkaan 20 vastaus kysymykseen 10");
-INSERT INTO VASTAUKSET VALUES  (20, 11, 4, "ehdokkaan 20 vastaus kysymykseen 11");
-INSERT INTO VASTAUKSET VALUES  (20, 12, 4, "ehdokkaan 20 vastaus kysymykseen 12");
-INSERT INTO VASTAUKSET VALUES  (20, 13, 2, "ehdokkaan 20 vastaus kysymykseen 13");
-INSERT INTO VASTAUKSET VALUES  (20, 14, 2, "ehdokkaan 20 vastaus kysymykseen 14");
-INSERT INTO VASTAUKSET VALUES  (20, 15, 4, "ehdokkaan 20 vastaus kysymykseen 15");
-INSERT INTO VASTAUKSET VALUES  (20, 16, 5, "ehdokkaan 20 vastaus kysymykseen 16");
-INSERT INTO VASTAUKSET VALUES  (20, 17, 2, "ehdokkaan 20 vastaus kysymykseen 17");
+INSERT INTO VASTAUKSET VALUES  (20, 10, 1, "ehdokkaan 20 vastaus kysymykseen 10");
+INSERT INTO VASTAUKSET VALUES  (20, 11, 1, "ehdokkaan 20 vastaus kysymykseen 11");
+INSERT INTO VASTAUKSET VALUES  (20, 12, 1, "ehdokkaan 20 vastaus kysymykseen 12");
+INSERT INTO VASTAUKSET VALUES  (20, 13, 1, "ehdokkaan 20 vastaus kysymykseen 13");
+INSERT INTO VASTAUKSET VALUES  (20, 14, 1, "ehdokkaan 20 vastaus kysymykseen 14");
+INSERT INTO VASTAUKSET VALUES  (20, 15, 1, "ehdokkaan 20 vastaus kysymykseen 15");
+INSERT INTO VASTAUKSET VALUES  (20, 16, 1, "ehdokkaan 20 vastaus kysymykseen 16");
+INSERT INTO VASTAUKSET VALUES  (20, 17, 1, "ehdokkaan 20 vastaus kysymykseen 17");
 INSERT INTO VASTAUKSET VALUES  (20, 18, 1, "ehdokkaan 20 vastaus kysymykseen 18");
 INSERT INTO VASTAUKSET VALUES  (20, 19, 1, "ehdokkaan 20 vastaus kysymykseen 19");
 
