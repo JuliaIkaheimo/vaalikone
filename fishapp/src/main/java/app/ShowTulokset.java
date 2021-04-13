@@ -11,51 +11,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Kysymykset;
+import data.*;
 
-/**
- * Servlet implementation class ShowKysymykset
- */
-@WebServlet("/showtulokset")
+@WebServlet(
+    name = "ShowTulokset",
+    urlPatterns = {"/showtulokset"}
+)
 public class ShowTulokset extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Dao dao=null;
-	
-	@Override
+	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
 	}
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowTulokset() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-    
-tected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kysymykset> list=null;
-		if (dao.getConnection()) {
-		String ehdokas_id=request.getParameter("ehdokas_id");
-		String etunimi=request.getParameter("etunimi");
-		String sukunimi=request.getParameter("sukunimi");
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	     throws IOException {
+		response.sendRedirect("index.html");
+	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	     throws IOException, ServletException {
+		ArrayList<Integer> Kayttajanvastaukset= new ArrayList<Integer>();
 		
-		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
-			l
-		ist=dao.readAllKysymykset();
+		for (int i=1; i<19;i++){
+			int vastaus=Integer.valueOf(request.getParameter("vastaus"+i));
+			Kayttajanvastaukset.add(vastaus);
 		}
-		else {
-			System.out.println("No connection to database");
+
+		ArrayList<Vastaukset> list=null;
+		if (dao.getConnection()) {
+			list=dao.readAllVastaukset();
 		}
-		request.setAttribute("tuloksetlist", list);
+		
+		int yhteensopivuus = 0;
+		for (int i=0; i<19;i++){
+			yhteensopivuus = yhteensopivuus + Kayttajanvastaukset.get(i) - list.get(i);
+		}
+		
+		request.setAttribute("ehdokkaidenvastaukset", list);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showtulokset.jsp");
 		rd.forward(request, response);
 	}
-	
 }

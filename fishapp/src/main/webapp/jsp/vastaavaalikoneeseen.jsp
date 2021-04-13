@@ -18,7 +18,7 @@ for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
 	out.println(k.getKysymys_id()+": "+k.getKysymys());
 	%>
 	<br>
-	<form action='update' method='post'>
+	<form action='showtulokset' method='post'>
 	<input type="radio" id="1" name="vastaus<%out.print(i+1);%>" value="1"> <label for="1">Täysin eri mieltä</label>
 	<input type="radio" id="2" name="vastaus<%out.print(i+1);%>" value="2"> <label for="2">Eri mieltä</label>
 	<input type="radio" id="3" name="vastaus<%out.print(i+1);%>" value="3"> <label for="3">En osaa sanoa</label>

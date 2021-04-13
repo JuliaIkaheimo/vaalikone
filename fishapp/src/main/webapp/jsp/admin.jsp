@@ -30,7 +30,7 @@ for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
 </ol>
 
 </div>
-<a href='/readehdokastoupdate'>Lisää ehdokas</a>
+<a href='/readehdokastolisaa'>Lisää ehdokas</a>
 </div>
 </div>
 <%@ include file="../html/footer.html" %>

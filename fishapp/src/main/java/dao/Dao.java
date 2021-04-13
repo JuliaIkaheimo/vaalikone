@@ -125,17 +125,18 @@ public class Dao {
 			return null;
 			}
 	}
-	public Vastaukset readVastaus(String ehdokas_id) {
-		Vastaukset v=null;
+	public ArrayList<Vastaukset> readVastau(String ehdokas_id) {
+		ArrayList<Vastaukset> list=new ArrayList<>();
 		try {
 			String sql="select * from vastaukset where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, ehdokas_id);
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
-				v=new Vastaukset();
+				Vastaukset v=new Vastaukset();
 				v.setKysymys_id(RS.getInt("kysymys_id"));
 				v.setVastaus(RS.getInt("vastaus"));
+				list.add(v);
 			}
 			return v;
 		}

@@ -16,8 +16,8 @@ import data.Ehdokkaat;
 /**
  * Servlet implementation class ShowFish
  */
-@WebServlet("/readehdokastoupdate")
-public class ReadEhdokasToUpdate extends HttpServlet {
+@WebServlet("/readehdokastolisaa")
+public class ReadEhdokasToLisaa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class ReadEhdokasToUpdate extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReadEhdokasToUpdate() {
+    public ReadEhdokasToLisaa() {
         super();
         // TODO Auto-generated constructor stub
     }

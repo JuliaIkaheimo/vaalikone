@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Kysymykset;
+import data.*;
 
 /**
  * Servlet implementation class ShowFish
@@ -38,14 +38,17 @@ public class LisaaVastaus extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kysymykset> list=null;
+		ArrayList<Kysymykset> kysymyslist=null;
+		ArrayList<Vastaukset> vastauksetlist=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymykset();
+			kysymyslist=dao.readAllKysymykset();
+			vastauksetlist=dao.readAllVastaukset();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("kysymyksetlist", list);
+		request.setAttribute("kysymyksetlist", kysymyslist);
+		request.setAttribute("vastauksetlist", vastauksetlist);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaavastaus.jsp");
 		rd.forward(request, response);
