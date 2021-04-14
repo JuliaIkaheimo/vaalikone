@@ -10,6 +10,7 @@
 <div class="container">
 <div class="row">
 <div class="col-9">
+<h2>
 <%
 ArrayList<Kysymykset> kysymyksetList=(ArrayList<Kysymykset>) request.getAttribute("kysymyksetList");
 ArrayList<Vastaukset> vastauksetList=(ArrayList<Vastaukset>) request.getAttribute("vastauksetList");
@@ -17,6 +18,7 @@ Ehdokkaat e = (Ehdokkaat) request.getAttribute("ehdokkaat");
 
 out.println(e.getEtunimi()+" "+e.getSukunimi()+ " - " + e.getPuolue());
 %>
+</h2>
 <br><br>
 <%
 for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
@@ -31,6 +33,8 @@ for (int i=0;kysymyksetList!=null && i<kysymyksetList.size();i++){
 	<input type="radio" id="3" name="vastaus<%out.print(i+1);%>" value="3" <%if (v.getVastaus() == 3) { out.println("checked"); } %>> <label for="3">En osaa sanoa</label>
 	<input type="radio" id="4" name="vastaus<%out.print(i+1);%>" value="4" <%if (v.getVastaus() == 4) { out.println("checked"); } %>> <label for="4">Samaa mieltä</label>
 	<input type="radio" id="5" name="vastaus<%out.print(i+1);%>" value="5" <%if (v.getVastaus() == 5) { out.println("checked"); } %>> <label for="5">Täysin samaa mieltä</label>
+	<br>
+	<label for="kommentti">Kommentti:  </label><input type='text'  id="kommentti" name='kommentti' size="35" value='<%out.println(v.getKommentti()); %>'>
 	</form>
 	<br><br>
 	<%

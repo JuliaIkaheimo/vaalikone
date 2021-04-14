@@ -14,10 +14,10 @@ import dao.Dao;
 import data.*;
 
 @WebServlet(
-    name = "UpdateEhdokas",
-    urlPatterns = {"/updateehdokas"}
+    name = "UpdateVastaukset",
+    urlPatterns = {"/updatevastaukset"}
 )
-public class UpdateEhdokas extends HttpServlet {
+public class UpdateVastaukset extends HttpServlet {
 	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
@@ -29,21 +29,25 @@ public class UpdateEhdokas extends HttpServlet {
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
-		ArrayList<Kysymykset> kysymyksetList=(ArrayList<Kysymykset>) request.getAttribute("kysymyksetList");
-		for (int i=0; i<kysymyksetList.size();i++){
-			
-		String vastaus=request.getParameter("vastaus"+(1));
+		ArrayList<Vastaukset> vastauksetList=(ArrayList<Vastaukset>) request.getAttribute("vastauksetList");
+		int listanpituus= vastauksetList.size();
 		
-		}
+
 		
-		Vastaukset e=new Vastaukset();
-		
-		ArrayList<Ehdokkaat> list=null;
+		ArrayList<Vastaukset> list=null;
 		if (dao.getConnection()) {
-			list=dao.updateEhdokas(e);
+			for (int i=0; i<listanpituus;i++){
+				String ehdokas_id=request.getParameter("ehdokas_id");	
+				String kysymys_id=request.getParameter("kysymys_id");
+				String vastaus = request.getParameter("vastaus"+(i));
+				String kommentti=request.getParameter("kommentti");
+				Vastaukset v = new Vastaukset (ehdokas_id, kysymys_id, vastaus, kommentti);
+				list=dao.updateVastaukset(v);
+			}
+			
 		}
 		
-		request.setAttribute("ehdokkaatlist", list);
+		request.setAttribute("vastaus", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}

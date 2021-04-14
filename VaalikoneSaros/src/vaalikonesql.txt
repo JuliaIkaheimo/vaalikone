@@ -25,6 +25,7 @@ use vaalikone;
 DROP TABLE if exists EHDOKKAAT;
 DROP TABLE if exists KYSYMYKSET;
 DROP TABLE if exists VASTAUKSET;
+DROP TABLE if exists LOGIN;
 
 ALTER DATABASE vaalikone CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 SET NAMES 'utf8' COLLATE 'utf8_general_ci';
@@ -59,6 +60,15 @@ CREATE TABLE VASTAUKSET (
    PRIMARY KEY (EHDOKAS_ID, KYSYMYS_ID)
 );
 
+-- create a table login
+CREATE TABLE LOGIN (
+   USERNAME VARCHAR(45) NOT NULL,
+   PASSWORD VARCHAR(45) NOT NULL,
+   PRIMARY KEY (USERNAME)
+);
+
+-- insert values into table login
+INSERT INTO LOGIN (username, password) VALUES ("admin", "qwerty");
 
 
 -- insert values into the table ehdokkaat
