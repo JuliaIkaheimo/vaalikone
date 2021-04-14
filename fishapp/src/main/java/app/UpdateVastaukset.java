@@ -30,17 +30,21 @@ public class UpdateVastaukset extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
 		ArrayList<Vastaukset> vastauksetList=(ArrayList<Vastaukset>) request.getAttribute("vastauksetList");
-		for (int i=0; i<vastauksetList.size();i++){
-			
-		String vastaus=request.getParameter("vastaus"+(1));
+		int listanpituus= vastauksetList.size();
 		
-		}
-		
-		Vastaukset v=new Vastaukset();
+
 		
 		ArrayList<Vastaukset> list=null;
 		if (dao.getConnection()) {
-			list=dao.updateVastaukset(v);
+			for (int i=0; i<listanpituus;i++){
+				String ehdokas_id=request.getParameter("ehdokas_id");	
+				String kysymys_id=request.getParameter("kysymys_id");
+				String vastaus = request.getParameter("vastaus"+(i));
+				String kommentti=request.getParameter("kommentti");
+				Vastaukset v = new Vastaukset (ehdokas_id, kysymys_id, vastaus, kommentti);
+				list=dao.updateVastaukset(v);
+			}
+			
 		}
 		
 		request.setAttribute("vastaus", list);

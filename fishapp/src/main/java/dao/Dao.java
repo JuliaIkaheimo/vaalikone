@@ -136,8 +136,10 @@ public class Dao {
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
 				Vastaukset v=new Vastaukset();
+				v.setEhdokas_id(RS.getInt("ehdokas_id"));
 				v.setKysymys_id(RS.getInt("kysymys_id"));
 				v.setVastaus(RS.getInt("vastaus"));
+				v.setKommentti(RS.getString("kommentti"));
 				vlist.add(v);
 			}
 			return vlist;
@@ -168,12 +170,14 @@ public class Dao {
 	
 	public ArrayList<Vastaukset> updateVastaukset(Vastaukset v) {
 		try {
-			String sql="update vastaukset set vastaus=? where ehdokas_id=?";
+			String sql="update vastaukset set vastaus=?, kommentti=? where ehdokas_id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, v.getVastaus());
-			pstmt.setInt(2, v.getEhdokas_id());
+			pstmt.setInt(1, v.getEhdokas_id());
+			pstmt.setInt(2, v.getKysymys_id());
+			pstmt.setInt(3, v.getVastaus());
+			pstmt.setString(4, v.getKommentti());
 			pstmt.executeUpdate();
-			return readEhdokkaanVastaukset();
+			return readAllVastaukset();
 		}
 		catch(SQLException s) {
 			return null;

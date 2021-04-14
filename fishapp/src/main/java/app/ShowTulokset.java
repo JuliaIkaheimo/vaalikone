@@ -41,24 +41,32 @@ public class ShowTulokset extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Vastaukset> kvlist=null;
+		ArrayList<Integer> kvlist=null;
 		ArrayList<Vastaukset> evlist=null;
-		ArrayList<Vastaukset> kevlist=null;
 		
 
+
 		if (dao.getConnection()) {
-			evlist=dao.readEhdokkaanVastaukset(ehdokas_id);
-			kevlist.add(evlist);
+			evlist=dao.readEhdokkaanVastaukset("1");
+			
+			for (int i=0;evlist!=null && i<evlist.size();i++) {	
+				kvlist.add(Integer.parseInt(request.getParameter("vastaus"+(i+1))));
+		}
+			for (int i=0;evlist!=null && i<evlist.size();i++) {
+				evlist=dao.readEhdokkaanVastaukset(Integer.toString(i));
+				Vastaukset v=evlist.get(i);
+				v.getVastaus(); - kvlist(i);
+				
+			}
+
+
 		}
 		else {
 			System.out.println("No connection to database");
 		}
 
 		
-		for (int i=0;klist!=null && i<klist.size();i++) {
-			kevlist=dao.readEhdokkaanVastaukset(i);
-			kvlist.add(request.getParameter("vastaus"+(i+1)));
-	}
+
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showtulokset.jsp");
 		rd.forward(request, response);
