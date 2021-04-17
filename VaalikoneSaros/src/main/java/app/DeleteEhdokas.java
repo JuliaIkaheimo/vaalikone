@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.Ehdokkaat;
+import data.Kysymykset;
 
 @WebServlet(
     name = "DeleteEhdokas",
@@ -26,11 +27,18 @@ public class DeleteEhdokas extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
 		String ehdokas_id=request.getParameter("ehdokas_id");
+		
+		
 		ArrayList<Ehdokkaat> list=null;
+		ArrayList <Kysymykset> list3=null;
+		ArrayList <Ehdokkaat> list2=null;
 		if (dao.getConnection()) {
 			list=dao.deleteEhdokas(ehdokas_id);
+			list2=dao.readAllEhdokkaat();
+			list3=dao.readAllKysymykset();
 		}
-		request.setAttribute("ehdokkaatlist", list);
+		request.setAttribute("ehdokkaatlist", list2);
+		request.setAttribute("kysymyksetlist", list3);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
 		rd.forward(request, response);
 	}

@@ -4,22 +4,23 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
-<%@ include file="../html/header.html" %>
+<%@ include file="header.jsp" %>
 <div class="container">
 <div class="row">
 <div class="col-9">
 
 <form action='lisaaehdokas' method='post'> 
-
-Ehdokkaan etunimi: <input type='text' name='etunimi' value=''><br>
-Ehdokkaan sukunimi: <input type='text' name='sukunimi' value=''><br>
-Ehdokkaan puolue: <input type='text' name='puolue' value=''><br>
-Kotipaikkakunta: <input type='text' name='kotipaikkakunta' value=''><br>
-Ikä: <input type='text' name='ika' value=''><br>
-Ammatti: <input type='text' name='ammatti' value=''><br>
-Miksi haluan eduskuntaan?: <input type='text' name='miksi_eduskuntaan' value=''><br>
-Mitä asioita haluan edistää?: <input type='text' name='mita_asioita_haluat_edistaa' value=''><br>
-<input type='submit' name='ok' value='Send'> 
+<table id='t01'>
+<tr><td>Ehdokkaan etunimi: </td><td><input type='text' name='etunimi' size="20" value=''></td></tr>
+<tr><td>Ehdokkaan sukunimi: </td><td><input type='text' name='sukunimi' size="20" value=''></td></tr>
+<tr><td>Ehdokkaan puolue: </td><td><input type='text' name='puolue' size="20" value=''></td></tr>
+<tr><td>Kotipaikkakunta: </td><td><input type='text' name='kotipaikkakunta' size="20" value=''></td></tr>
+<tr><td>Ikä: </td><td><input type='text' name='ika' size="20" value=''></td></tr>
+<tr><td>Ammatti: </td><td><input type='text' name='ammatti' size="20" value=''></td></tr>
+<tr><td>Miksi haluan eduskuntaan?: </td><td><input type='text' name='miksi_eduskuntaan' size="100" value=''></td></tr>
+<tr><td>Mitä asioita haluan edistää?: </td><td><input type='text' name='mita_asioita_haluat_edistaa' size="100" value=''></td></tr>
+</table>
+<input class='btn btn-outline-success my-2 my-sm-0' type='submit' name='ok' value='Lisää ehdokas'> 
 </form>
 </div>
 </div>

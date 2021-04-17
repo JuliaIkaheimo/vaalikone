@@ -10,7 +10,9 @@ public class Ehdokkaat {
 	private String miksi_eduskuntaan;
 	private String mita_asioita_haluat_edistaa;
 	private String ammatti;
+	private int vertailu;
 	
+
 	public Ehdokkaat(String ehdokas_id, String etunimi, String sukunimi, String puolue, String kotipaikkakunta, String ika, String miksi_eduskuntaan, String mita_asioita_haluat_edistaa, String ammatti) {
 		// TODO Auto-generated constructor stub
 		setEhdokas_id(ehdokas_id);
@@ -96,5 +98,10 @@ public class Ehdokkaat {
 	public void setAmmatti(String ammatti) {
 		this.ammatti= ammatti;
 	}
-	
+	public int getVertailu() {
+		return vertailu;
+	}
+	public void setVertailu(int vertailu) {
+		this.vertailu = vertailu;
+	}
 }

@@ -13,15 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Dao;
 import data.*;
 
+
 /**
- * Servlet implementation class ShowFish
+ * Servlet implementation class ReadToUpdate
  */
-@WebServlet("/readehdokkaattoadmin")
-public class ReadEhdokkaatToAdmin extends HttpServlet {
+@WebServlet(
+	    name = "ReahEhdokasProfiili",
+	    urlPatterns = {"/showehdokkaanprofiili"}
+	)
+public class ReadEhdokasProfiili extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Dao dao=null;
-	
-	@Override
+	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
 	}
@@ -29,7 +31,7 @@ public class ReadEhdokkaatToAdmin extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReadEhdokkaatToAdmin() {
+    public ReadEhdokasProfiili() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,20 +40,24 @@ public class ReadEhdokkaatToAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Ehdokkaat> list=null;
-		ArrayList<Kysymykset> list2=null;
+
+		String ehdokas_id=request.getParameter("ehdokas_id");
+		Ehdokkaat e=null;
+		ArrayList<Kysymykset> klist=null;
+		ArrayList<Vastaukset> vlist=null;
 		if (dao.getConnection()) {
-			list=dao.readAllEhdokkaat();
-			list2=dao.readAllKysymykset();
+			klist=dao.readAllKysymykset();
+			vlist=dao.readEhdokkaanVastaukset(ehdokas_id);
+			e=dao.readEhdokas(ehdokas_id);
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("ehdokkaatlist", list);
-		request.setAttribute("kysymyksetlist", list2);
+		request.setAttribute("kysymyksetList", klist);
+		request.setAttribute("vastauksetList", vlist);
+		request.setAttribute("ehdokkaat", e);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showehdokkaanprofiili.jsp");
 		rd.forward(request, response);
 	}
-	
 }

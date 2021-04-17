@@ -29,11 +29,7 @@ footer {
 	padding-bottom: 75px;
 }
 
-table {}
-
-table,
-th,
-td {
+table {
 	border: 1px solid #333333;
 	border-collapse: collapse;
 }
@@ -41,7 +37,7 @@ td {
 th,
 td {
 	padding: 15px;
-	text-align: center;
+	text-align: left;
 }
 
 table#t01 tr:nth-child(even) {
@@ -56,8 +52,6 @@ table#t01 th {
 	background-color: #333333;
 	color: white;
 }
-
-table#t02 {}
 
 .button {
 	font-family: 'Oswald', sans-serif;
@@ -153,7 +147,7 @@ figcaption {
 
 .masthead {
 	height: 175px;
-	background-image: url('images/header.jpg');
+	background-image: url('images/header2.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;

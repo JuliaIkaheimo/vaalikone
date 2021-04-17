@@ -42,6 +42,31 @@ public class Dao {
 			return false;
 		}
 	}
+	
+	 public static boolean checkUser(String username,String password) 
+	    {
+	        boolean st =false;
+	        try {
+
+	            //loading drivers for mysql
+	            Class.forName("com.mysql.jdbc.Driver");
+
+	            //creating connection with the database
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
+	            PreparedStatement ps = con.prepareStatement("select * from login where username=? and password=?");
+	            ps.setString(1, username);
+	            ps.setString(2, password);
+	            ResultSet rs =ps.executeQuery();
+	            st = rs.next();
+
+	        }
+	        catch(Exception r) {
+	            r.printStackTrace();
+	        }
+	        return st;
+	    }
+	
+	
 	public ArrayList<Ehdokkaat> readAllEhdokkaat() {
 		ArrayList<Ehdokkaat> list=new ArrayList<>();
 		try {
@@ -134,8 +159,10 @@ public class Dao {
 			ResultSet RS=pstmt.executeQuery();
 			while (RS.next()){
 				Vastaukset v=new Vastaukset();
+				v.setEhdokas_id(RS.getInt("ehdokas_id"));
 				v.setKysymys_id(RS.getInt("kysymys_id"));
 				v.setVastaus(RS.getInt("vastaus"));
+				v.setKommentti(RS.getString("kommentti"));
 				vlist.add(v);
 			}
 			return vlist;
@@ -163,7 +190,24 @@ public class Dao {
 			return null;
 		}
 	}
-		
+	
+	public void updateVastaukset(ArrayList<Vastaukset> list) {
+		try {
+			String sql="update vastaukset set vastaus=?, kommentti=? where ehdokas_id=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			for (int i=0; i<list.size();i++) {
+			Vastaukset v=new Vastaukset();
+			pstmt.setInt(1, v.getEhdokas_id());
+			pstmt.setInt(2, v.getKysymys_id());
+			pstmt.setInt(3, v.getVastaus());
+			pstmt.setString(4, v.getKommentti());
+			pstmt.executeUpdate();
+			}
+		}
+		catch(SQLException s) {
+		}
+	}
+	
 	public ArrayList<Kysymykset> readAllKysymykset() {
 		ArrayList<Kysymykset> list=new ArrayList<>();
 		try {
@@ -181,7 +225,6 @@ public class Dao {
 			return null;
 		}
 	}
-	
 	
 	public ArrayList<Ehdokkaat> lisaaEhdokas(Ehdokkaat e) {
 		try {
@@ -202,26 +245,19 @@ public class Dao {
 		catch(SQLException s) {
 			return null;
 		}
-	}
-	public Ehdokkaat ParasEhdokas(String ehdokas_id) {
-		Ehdokkaat e=null;
+	}	
+	
+	public ArrayList<Kysymykset> lisaaKysymys(Kysymykset k) {
 		try {
-			String sql="SELECT ROUND(((sum(val)-48)*100)/(0-48),1) AS precent, Ehdokas_ID FROM (SELECT ABS(Vastaus - 1) AS val, Ehdokas_ID FROM"+
-					for (int i=1; i<20;i++) {
-					 String println = "Vastaukset t WHERE Kysymys_ID = "+i+"GROUP BY Ehdokas_ID UNION ALL"+
-					}
+			String sql="insert into kysymykset(kysymys_id, kysymys) values(?, ?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, ehdokas_id);
-			ResultSet RS=pstmt.executeQuery();
-			while (RS.next()){
-				e.setEhdokas_id(RS.getInt("ehdokas_id"));
-				e.setPrecent(RS.getString("precent"));
-			}
-			return e;
+			pstmt.setInt(1, k.getKysymys_id());
+			pstmt.setString(2, k.getKysymys());
+			pstmt.executeUpdate();
+			return readAllKysymykset();
 		}
 		catch(SQLException s) {
 			return null;
-			}
+		}
 	}
-	
 }

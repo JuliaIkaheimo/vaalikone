@@ -6,34 +6,47 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
-<%@ include file="../html/header.html" %>
+<%@ include file="header.jsp" %>
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <h1 class="font-weight-light">Admin paneeli</h1>
+        <p class="lead">Admin voi poistaa/muokata tai lisätä ehdokkaita tai kysymyksiä</p>
+      </div>
+    </div>
+  </div>
+</header>
 <div class="container">
 <div class="row">
 <div class="col-9">
-<ol>
+<h3>Ehdokkaat</h3>
+<table id='t01'>
 <c:forEach var="Ehdokkaat" items="${requestScope.ehdokkaatlist}" >
-<li>${Ehdokkaat.getEhdokas_id()} ${Ehdokkaat.getEtunimi()} ${Ehdokkaat.getSukunimi()} - ${Ehdokkaat.getPuolue()} - ${Ehdokkaat.getKotipaikkakunta()}<a href='/deleteehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> delete </a> <a href='/readtoupdateehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> update </a><a href='/showvastauksettoedit?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'> kysymyksiin vastaus </a>
+<tr><td>${Ehdokkaat.getEhdokas_id()}. ${Ehdokkaat.getEtunimi()} ${Ehdokkaat.getSukunimi()} - ${Ehdokkaat.getPuolue()} - ${Ehdokkaat.getKotipaikkakunta()}</td> <td><a class='button' href='/deleteehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'>Poista</a><a class='button' href='/readtoupdateehdokas?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'>Päivitä</a><a class='button' href='/showvastauksettoedit?ehdokas_id=${Ehdokkaat.getEhdokas_id()}'>Kysymykset</a></td></tr>
 </c:forEach>
-</ol>
-<ol>
-<%
-	ArrayList<Ehdokkaat> ehdokkaatList=(ArrayList<Ehdokkaat>)request.getAttribute("ehdokkaatlist");
-
-for (int i=0;ehdokkaatList!=null && i<ehdokkaatList.size();i++){
-	Ehdokkaat e=ehdokkaatList.get(i);
-%>
-<br>
-<%
-	out.println("<li> "+e.getEtunimi()+" "+e.getSukunimi()+" - "+e.getPuolue()+" - "+e.getKotipaikkakunta()+"<a href='/deleteehdokas?ehdokas_id="+e.getEhdokas_id()+"'> delete </a> <a href='/readtoupdateehdokas?ehdokas_id="+e.getEhdokas_id()+"'> update </a>");
-}
-%>
-</ol>
-
+</table>
 </div>
-<a href='/readehdokastolisaa'>Lisää ehdokas</a>
+<div class="col-3">
+<h3>Lisää tietoa:</h3>
+<p><a class='button' href='/readehdokastolisaa'>Lisää ehdokas</a></p>
+</div>
+</div>
+<div class="row">
+<div class="col-9">
+<h3>Kysymykset</h3>
+<table id='t01'>
+<c:forEach var="Kysymykset" items="${requestScope.kysymyksetlist}" >
+<tr><td>${Kysymykset.getKysymys_id()} - ${Kysymykset.getKysymys()}</td>
+</c:forEach>
+</table>
+</div>
+
+<div class="col-3">
+<h3>Lisää tietoa:</h3>
+<p><a class='button' href='/readkysymystolisaa'>Lisää kysymys</a></p>
+</div>
 </div>
 </div>
 <%@ include file="../html/footer.html" %>
-
-
 

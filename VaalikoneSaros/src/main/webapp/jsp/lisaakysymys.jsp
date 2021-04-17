@@ -8,13 +8,12 @@
 <div class="container">
 <div class="row">
 <div class="col-9">
-<% out.println(request.getAttribute("viesti")); %>
-<form action="login" method="post">
-    Käyttäjänimi: <input type="text" name="username"/> <br/>
-    Salasana: <input type="password" name="password"/> <br/>
-    <input type="submit" value="Kirjaudu" />
-</form>
 
+<form action='lisaakysymys' method='post'>
+
+Kysymys: <input type='text' name='kysymys' size="35" value= ''><br>
+<input type='submit' name='ok' value='Send'> 
+</form>
 </div>
 </div>
 </div>

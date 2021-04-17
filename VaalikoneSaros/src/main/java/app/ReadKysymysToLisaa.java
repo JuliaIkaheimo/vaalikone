@@ -16,8 +16,8 @@ import data.*;
 /**
  * Servlet implementation class ShowFish
  */
-@WebServlet("/readehdokkaattoadmin")
-public class ReadEhdokkaatToAdmin extends HttpServlet {
+@WebServlet("/readkysymystolisaa")
+public class ReadKysymysToLisaa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 	
@@ -29,7 +29,7 @@ public class ReadEhdokkaatToAdmin extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReadEhdokkaatToAdmin() {
+    public ReadKysymysToLisaa() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +38,16 @@ public class ReadEhdokkaatToAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Ehdokkaat> list=null;
-		ArrayList<Kysymykset> list2=null;
+		ArrayList<Kysymykset> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllEhdokkaat();
-			list2=dao.readAllKysymykset();
+			list=dao.readAllKysymykset();
 		}
 		else {
 			System.out.println("No connection to database");
 		}
-		request.setAttribute("ehdokkaatlist", list);
-		request.setAttribute("kysymyksetlist", list2);
+		request.setAttribute("kysymyksetlist", list);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/admin.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/lisaakysymys.jsp");
 		rd.forward(request, response);
 	}
 	

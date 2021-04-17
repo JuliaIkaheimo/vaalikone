@@ -6,7 +6,7 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
-<%@ include file="../html/header2.html" %>
+<%@ include file="header.jsp" %>
 <div class="container">
 <div class="row">
 <div class="col-9">
