@@ -43,6 +43,29 @@ public class Dao {
 		}
 	}
 	
+	 public static boolean checkUser(String username,String password) 
+	    {
+	        boolean st =false;
+	        try {
+
+	            //loading drivers for mysql
+	            Class.forName("com.mysql.jdbc.Driver");
+
+	            //creating connection with the database
+	            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
+	            PreparedStatement ps = con.prepareStatement("select * from login where username=? and password=?");
+	            ps.setString(1, username);
+	            ps.setString(2, password);
+	            ResultSet rs =ps.executeQuery();
+	            st = rs.next();
+
+	        }
+	        catch(Exception r) {
+	            r.printStackTrace();
+	        }
+	        return st;
+	    }
+	
 	
 	public ArrayList<Ehdokkaat> readAllEhdokkaat() {
 		ArrayList<Ehdokkaat> list=new ArrayList<>();
@@ -222,4 +245,18 @@ public class Dao {
 			return null;
 		}
 	}	
+	
+	public ArrayList<Kysymykset> lisaaKysymys(Kysymykset k) {
+		try {
+			String sql="insert into kysymykset(kysymys_id, kysymys) values(?, ?)";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, k.getKysymys_id());
+			pstmt.setString(2, k.getKysymys());
+			pstmt.executeUpdate();
+			return readAllKysymykset();
+		}
+		catch(SQLException s) {
+			return null;
+		}
+	}
 }

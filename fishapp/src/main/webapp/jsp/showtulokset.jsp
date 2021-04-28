@@ -8,13 +8,13 @@
 <div class="container">
 <div class="row">
 <div class="col-9">
+<ol>
+<c:forEach var="Ehdokkaat" items="${requestScope.ehdokkaatlist}" >
+<li>${Ehdokkaat.getEtunimi()} ${Ehdokkaat.getSukunimi()} ${Ehdokkaat.getPuolue()} ${requestScope.vertailulist[0]}
+</c:forEach>
+</ol>
 
-<form action='update' method='post'>
-Ehdokas id: <input type='text' name='ehdokas_id' value='${requestScope.vastaukset.ehdokas_id}' readonly><br> 
-Ehdokkaan etunimi: <input type='text' name='etunimi' value='${requestScope.vastaukset.vastaus}'><br>
 
-<input type='submit' name='ok' value='Send'> 
-</form>
 </div>
 </div>
 </div>

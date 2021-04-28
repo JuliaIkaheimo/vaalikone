@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.Ehdokkaat;
-import data.Kysymykset;
+import data.*;
 
 @WebServlet(
-    name = "LisaaEhdokas",
-    urlPatterns = {"/lisaaehdokas"}
+		name = "LisaaKysymys",
+		urlPatterns = {"/lisaakysymys"}
 )
-public class LisaaEhdokas extends HttpServlet {
+
+public class LisaaKysymys extends HttpServlet {
 	private Dao dao;
 	public void init() {
 		dao=new Dao("jdbc:mysql://localhost:3306/vaalikone", "antero", "kukkuu");
@@ -30,23 +30,16 @@ public class LisaaEhdokas extends HttpServlet {
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
-		String ehdokas_id=request.getParameter("ehdokas_id");
-		String etunimi=request.getParameter("etunimi");
-		String sukunimi=request.getParameter("sukunimi");
-		String puolue=request.getParameter("puolue");
-		String kotipaikkakunta=request.getParameter("kotipaikkakunta");
-		String ika=request.getParameter("ika");
-		String miksi_eduskuntaan=request.getParameter("miksi_eduskuntaan");
-		String mita_asioita_haluat_edistaa=request.getParameter("mita_asioita_haluat_edistaa");
-		String ammatti=request.getParameter("ammatti");
+		String kysymys_id=request.getParameter("kysymys_id");
+		String kysymys=request.getParameter("kysymys");
 		
-		Ehdokkaat e=new Ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, kotipaikkakunta, ika, miksi_eduskuntaan, mita_asioita_haluat_edistaa, ammatti);
+		Kysymykset k=new Kysymykset (kysymys_id, kysymys);
 		
-		ArrayList <Ehdokkaat> list=null;
+		ArrayList <Kysymykset> list=null;
 		ArrayList <Kysymykset> list3=null;
 		ArrayList <Ehdokkaat> list2=null;
 		if (dao.getConnection()) {
-			list=dao.lisaaEhdokas(e);
+			list=dao.lisaaKysymys(k);
 			list2=dao.readAllEhdokkaat();
 			list3=dao.readAllKysymykset();
 		}
